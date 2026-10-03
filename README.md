@@ -8,7 +8,7 @@ No transaction was submitted. No mainnet. No browser-wallet (CIP-30) spend. CIP-
 
 **Audience:** Community learners and reviewers.
 **Status:** teaching sketch. Not a live vote. No transaction was submitted.
-**Checked:** 2026-10-02 (evening PT).
+**Checked:** local re-check from 2026-10-02 evening PT on `aiken v1.1.23+8949565`. That check was not re-run for this wording update.
 
 UTxO means unspent transaction output (a coin output that has not been spent yet). The validator below is a spend validator: it runs only when a transaction tries to spend one of those outputs.
 
@@ -40,11 +40,11 @@ Read these before anyone treats a counter as a vote.
 - There is no identity. Nothing in the datum records who voted.
 - This is not a snapshot. There is no block height, no time, and no list of holders.
 - The title hash is not checked. The script does not hash a title string, does not require 32 bytes, and does not look up a proposal list. The locker picks the starting datum, including the starting counts.
-- The two tests only check the helper that adds one to a counter. They do not build a transaction and they do not run the spend rule. The spend rule typechecked. It was not executed.
+- The quoted check is five unit tests, all passing. The counter tests are `yes_adds_one_and_keeps_title` and `no_adds_one_and_keeps_title`. The helper tests are `first_use_of_bytes_is_allowed`, `second_use_of_same_bytes_is_rejected`, and `different_bytes_are_still_allowed`. No transaction was built, and the spend rule was not executed. The spend rule typechecked.
 
 ## What was compiled
 
-Command used for the pass below: `aiken v1.1.23+8949565`.
+The passing check quoted below is a local re-check from 2026-10-02 evening PT on `aiken v1.1.23+8949565`. It is not a check re-run for this wording update.
 
 `aiken.toml` pins:
 
@@ -62,7 +62,7 @@ The `repository` table in `aiken.toml` is only the project name Aiken requires, 
 
 | Claim | Rating |
 |-------|--------|
-| `aiken check` in this folder exited 0 on 2026-10-02 against stdlib v3.1.0, and the two counter tests passed | **Solid** (output quoted below) |
+| Local re-check of `aiken check` on 2026-10-02 evening PT, compiler `aiken v1.1.23+8949565`, stdlib v3.1.0: exit 0, 5 passed, 0 failed (three helper tests and two counter tests) | **Solid** (output quoted below; that check was not re-run for this wording update) |
 | The spend rule typechecks as part of that same check | **Solid** (the project compiled; exit 0) |
 | The spend rule was run on a sample transaction | **Not run.** Do not read the unit tests as covering it. Call that behavior **Shaky** until a transaction test exists |
 | This sketch is CIP-1694 governance, a DRep vote, or a treasury move | **Solid** that it is none of those. The code never touches treasury fields and rejects the governance script purposes |
@@ -72,36 +72,74 @@ The `repository` table in `aiken.toml` is only the project name Aiken requires, 
 
 ## NOTE — `aiken check`
 
-Command (Aiken printed JSON). The command was run in this project folder:
+This output is a local re-check from 2026-10-02 evening PT on `aiken v1.1.23+8949565`. It is not a check re-run for this wording update. The command was `aiken check` in this project folder. Aiken printed JSON. Process exit code observed: 0. Summary: 5 passed, 0 failed. The helper tests are `first_use_of_bytes_is_allowed`, `second_use_of_same_bytes_is_rejected`, and `different_bytes_are_still_allowed`. The counter tests are `yes_adds_one_and_keeps_title` and `no_adds_one_and_keeps_title`. No transaction was built, and the spend rule was not executed.
 
 ```
 aiken check
 ```
 
-Process exit code observed: 0.
-
-Output captured from that command:
+Output captured from that local re-check:
 
 ```
     Compiling preview-practice/yes-no-sketch 0.0.0 (.)
-    Resolving dependencies
     Resolving preview-practice/yes-no-sketch
-      Fetched 1 package in 0.05s from cache
+      Fetched 1 package in 0.07s from cache
     Compiling aiken-lang/stdlib v3.1.0 (./build/packages/aiken-lang-stdlib)
    Collecting all tests scenarios across all modules
       Testing ...
 {
-  "seed": 3817836258,
+  "seed": 1864439153,
   "summary": {
-    "total": 2,
-    "passed": 2,
+    "total": 5,
+    "passed": 5,
     "failed": 0,
     "kind": {
-      "unit": 2,
+      "unit": 5,
       "property": 0
     }
   },
   "modules": [
+    {
+      "name": "credential_once",
+      "summary": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "kind": {
+          "unit": 3,
+          "property": 0
+        }
+      },
+      "tests": [
+        {
+          "title": "first_use_of_bytes_is_allowed",
+          "status": "pass",
+          "on_failure": "fail_immediately",
+          "execution_units": {
+            "mem": 14453,
+            "cpu": 3545563
+          }
+        },
+        {
+          "title": "second_use_of_same_bytes_is_rejected",
+          "status": "pass",
+          "on_failure": "fail_immediately",
+          "execution_units": {
+            "mem": 15787,
+            "cpu": 4848059
+          }
+        },
+        {
+          "title": "different_bytes_are_still_allowed",
+          "status": "pass",
+          "on_failure": "fail_immediately",
+          "execution_units": {
+            "mem": 34731,
+            "cpu": 8931097
+          }
+        }
+      ]
+    },
     {
       "name": "proposal_yes_no",
       "summary": {
@@ -138,6 +176,6 @@ Output captured from that command:
 }
 ```
 
-The earlier v4 attempt is not this result. Its captured summary was `Summary 2 errors, 0 warnings` (exit 1).
+The earlier v4 attempt is not this result. On this compiler, `aiken check` against stdlib `v4.0.0` failed while parsing the library itself (`cardano/value.ak` and `cardano/value.test.ak`). Its captured summary was `Summary 2 errors, 0 warnings` (exit 1).
 
 This repository is a teaching sketch, not a live vote, and no transaction was submitted.
