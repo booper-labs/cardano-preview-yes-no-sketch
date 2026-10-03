@@ -3,7 +3,7 @@ version = "0.0.0"
 compiler = "v1.1.23"
 plutus = "v3"
 license = "Apache-2.0"
-description = "Local Preview teaching sketch: a proposal datum plus a yes/no counter. Not a GitHub repo and not published."
+description = "Preview teaching sketch: a proposal datum plus a yes/no counter. Not CIP-1694 and not a treasury action."
 
 [repository]
 user = "preview-practice"

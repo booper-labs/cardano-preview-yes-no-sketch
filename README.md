@@ -52,7 +52,7 @@ The hello-world practice project at `preview-practice-spike/aiken-hello` pins th
 
 Stdlib v4 matters, and this sketch does **not** use it. The GitHub releases page for `aiken-lang/stdlib`, fetched 2026-10-02, lists `v4.0.0` (commit `dfdf5ff`) above `v3.1.0`. v4 renames the old `Value` type to `Assets` and adds a builtin value syntax. On this compiler, `aiken check` against `v4.0.0` failed while parsing the library itself (`cardano/value.ak` and `cardano/value.test.ak`). The summary line was `Summary 2 errors, 0 warnings` and the process exited 1. That pin was reverted. `aiken new` on this machine had written stdlib `1.5.0`, which is older than the v3 API this compiler expects; that default was replaced with `v3.1.0` before the passing check. A newer compiler was not installed. The box already had Aiken.
 
-The `repository` table in `aiken.toml` is only the project name Aiken requires. It is not a remote, and it was not published.
+The `repository` table in `aiken.toml` is only the project name Aiken requires, not a claim that this GitHub repo does not exist.
 
 ## Honesty
 
@@ -68,10 +68,9 @@ The `repository` table in `aiken.toml` is only the project name Aiken requires. 
 
 ## NOTE — `aiken check`
 
-Command (this shell was not a terminal, so Aiken printed JSON, which is what it documents for non-TTY output):
+Command (this shell was not a terminal, so Aiken printed JSON, which is what it documents for non-TTY output). The command was run in this project folder:
 
 ```
-cd /workspace/preview-practice-spike/publish/drafts/preview-yes-no-sketch-2026-10-02
 aiken check
 ```
 
@@ -137,6 +136,4 @@ Output captured from that command:
 
 The earlier v4 attempt is not this result. Its captured summary was `Summary 2 errors, 0 warnings` (exit 1).
 
-## What still needs a greenlight
-
-Publishing this folder, opening a GitHub repo, submitting any transaction (Preview included), or treating these counters as real governance. None of that was done.
+This repository is a teaching sketch, not a live vote, and no transaction was submitted.
