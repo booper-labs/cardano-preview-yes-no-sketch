@@ -50,7 +50,7 @@ Command used for the pass below: `aiken v1.1.23+8949565`.
 
 Another hello practice project pins compiler v1.1.23 and `plutus = "v3"`, with a floating stdlib tag `version = "v3"`, not `v3.1.0`. No transaction hash was copied from that repo.
 
-Stdlib v4 matters, and this sketch does **not** use it. The GitHub releases page for `aiken-lang/stdlib`, fetched 2026-10-02, lists `v4.0.0` (commit `dfdf5ff`) above `v3.1.0`. v4 renames the old `Value` type to `Assets` and adds a builtin value syntax. On this compiler, `aiken check` against `v4.0.0` failed while parsing the library itself (`cardano/value.ak` and `cardano/value.test.ak`). The summary line was `Summary 2 errors, 0 warnings` and the process exited 1. That pin was reverted. `aiken new` on this machine had written stdlib `1.5.0`, which is older than the v3 API this compiler expects; that default was replaced with `v3.1.0` before the passing check. A newer compiler was not installed.
+Stdlib v4 matters, and this sketch does **not** use it. The GitHub releases page for `aiken-lang/stdlib`, fetched 2026-10-02, lists `v4.0.0` (commit `dfdf5ff`) above `v3.1.0`. v4 renames the old `Value` type to `Assets` and adds a builtin value syntax. On this compiler, `aiken check` against `v4.0.0` failed while parsing the library itself (`cardano/value.ak` and `cardano/value.test.ak`). The summary line was `Summary 2 errors, 0 warnings` and the process exited 1. That pin was reverted. `aiken new` had written stdlib `1.5.0`, which is older than the v3 API this compiler expects; that default was replaced with `v3.1.0` before the passing check. A newer compiler was not installed.
 
 The `repository` table in `aiken.toml` is only the project name Aiken requires, not a claim that this GitHub repo does not exist.
 
@@ -68,7 +68,7 @@ The `repository` table in `aiken.toml` is only the project name Aiken requires, 
 
 ## NOTE — `aiken check`
 
-Command (this shell was not a terminal, so Aiken printed JSON, which is what it documents for non-TTY output). The command was run in this project folder:
+Command (Aiken printed JSON). The command was run in this project folder:
 
 ```
 aiken check
