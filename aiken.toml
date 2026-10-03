@@ -1,0 +1,18 @@
+name = "preview-practice/yes-no-sketch"
+version = "0.0.0"
+compiler = "v1.1.23"
+plutus = "v3"
+license = "Apache-2.0"
+description = "Local Preview teaching sketch: a proposal datum plus a yes/no counter. Not a GitHub repo and not published."
+
+[repository]
+user = "preview-practice"
+project = "yes-no-sketch"
+platform = "github"
+
+[[dependencies]]
+name = "aiken-lang/stdlib"
+version = "v3.1.0"
+source = "github"
+
+[config]
