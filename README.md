@@ -26,6 +26,10 @@ On a successful spend the script asks for exactly one new output back to the sam
 
 The file is `validators/proposal_yes_no.ak`.
 
+## Teaching helper
+
+`lib/credential_once.ak` is a teaching helper. It is not a live vote, and the proposal counter does not use it.
+
 ## Obvious limits
 
 Read these before anyone treats a counter as a vote.
