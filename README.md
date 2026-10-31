@@ -2,7 +2,6 @@ This is NOT CIP-1694 governance (CIP means Cardano Improvement Proposal; CIP-169
 
 This does NOT move the Cardano treasury and is NOT a delegated-representative (DRep) vote.
 
-$RISE voting weight is Unknown: who holds it, on which chain, and what a script could prove. Those three are not filled in here.
 
 No transaction was submitted. No mainnet. No browser-wallet (CIP-30) spend. CIP-30 is the Cardano standard for a web page to ask a browser wallet to build or sign a transaction. This folder does not do that.
 
